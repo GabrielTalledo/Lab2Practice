@@ -54,4 +54,15 @@ public class SedeController {
         return "redirect:/sede";
 
     }
+
+    @GetMapping(value={"/borrar"})
+    public String eliminarSede(@RequestParam("id") Integer id){
+
+        Optional<Sede> optSede = sedeRepository.findById(id);
+        if(optSede.isPresent()){
+            sedeRepository.deleteById(optSede.get().getIdSede());
+        }
+        return "redirect:/sede";
+
+    }
 }
